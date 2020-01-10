@@ -66,3 +66,19 @@ get '/volunteer/new' do
 end
 
 #this allow the user to post a new volunteer to the homepage
+
+
+
+
+#This will show the detals and volunteers for a specific project
+
+#this shows the page on the operator view for a specific city id
+
+get ('/home/project/:id')do
+
+  @project = Project.find(params[:id].to_i())
+  @volunteers = @project.volunteers()
+
+  erb(:project)
+
+end
