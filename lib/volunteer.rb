@@ -5,20 +5,13 @@ class Volunteer
     @name = attributes.fetch(:name)
     @id = attributes.fetch(:id)
     @project_id = attributes.fetch(:project_id)
-
-
   end
-
-
-
-#name might need to be a param instead of an instance var. if so remove @, this might not pass
 
   def save
   result = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;")
   @id = result.first().fetch("id").to_i
   end
 
-#below method might not pass
 
   def self.all
     returned_volunteers = DB.exec("SELECT * FROM volunteers;")
@@ -41,32 +34,24 @@ class Volunteer
     end
   end
 
+#Below method may not pass (experiment if still works with instance and param id vars)
 
-  # def self.find(id)
-  #   project = DB.exec("SELECT * FROM projects WHERE id = #{id};").first
-  #   if project
-  #
-  #     title = project.fetch("title")
-  #     id = project.fetch("id").to_i
-  #     Project.new({:title => title, :id => id})
-  #   else
-  #     nil
-  #   end
-  #
-  # end
-  #
-  #
-  # def update(attributes)
-  #
-  #   @title = attributes.fetch(:title)
-  #   DB.exec("UPDATE projects SET title= '#{@title}' WHERE id = #{id};")
-  #
-  # end
-  #
-  # def delete()
-  #   DB.exec("DELETE FROM projects WHERE id = #{@id};")
-  #
-  # end
+
+  def self.find(id)
+    volunteer = DB.exec("SELECT * FROM volunteers WHERE id = #{id};").first
+    if volunteer
+
+      name = volunteer.fetch("name")
+      project_id = volunteer.fetch("project_id").to_i
+      id = volunteer.fetch("id").to_i
+      Volunteer.new({:name => name, :project_id => project_id, :id => id})
+    else
+      nil
+    end
+
+  end
+
+
 
 
 
