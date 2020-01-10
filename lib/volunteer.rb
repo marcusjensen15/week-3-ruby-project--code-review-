@@ -34,7 +34,6 @@ class Volunteer
     end
   end
 
-#Below method may not pass (experiment if still works with instance and param id vars)
 
 
   def self.find(id)

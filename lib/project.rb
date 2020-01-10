@@ -7,18 +7,6 @@ class Project
 
   end
 
-  # def title
-  #   returned_title = @title
-  #   returned_title
-  # end
-
-
-  # def id
-  #   returned_id = @id
-  #   returned_id
-  # end
-
-
   def save
   result = DB.exec("INSERT INTO projects (title) VALUES ('#{title}') RETURNING id;")
   @id = result.first().fetch("id").to_i
@@ -69,6 +57,19 @@ class Project
 
   def delete()
     DB.exec("DELETE FROM projects WHERE id = #{@id};")
+
+  end
+
+  #below method isn't tested. gets all volunteers for a project
+
+  def volunteers()
+
+    returned_volunteers = DB.exec("SELECT name FROM volunteers WHERE project_id = '#{@id}';")
+    volunteers = []
+    returned_volunteers.each do |volunteer|
+      volunteers.push(volunteer.fetch("name"))
+    end
+    volunteers
 
   end
 
