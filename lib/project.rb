@@ -12,11 +12,17 @@ class Project
     returned_title
   end
 
-#below test not passing
+
   def id
     returned_id = @id
     returned_id
   end
 
+  #below method not yet passing
+
+  def save
+  result = DB.exec("INSERT INTO projects (title) VALUES ('#{title}') RETURNING id;")
+  @id = result.first().fetch("id").to_i
+  end
 
 end
