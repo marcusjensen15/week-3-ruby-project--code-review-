@@ -71,5 +71,8 @@ class Project
     DB.exec("DELETE FROM projects WHERE id = #{@id};")
 
   end
-  
+
+
+
+
 end
