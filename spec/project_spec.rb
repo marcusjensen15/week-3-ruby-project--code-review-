@@ -61,6 +61,8 @@ describe Project do
     end
   end
 
+  #I revised the test below, I want my volunteers method to return names, not volunteer objects. Having it return names is DRYer code and makes more sense in this context.
+
   describe '#volunteers' do
     it 'returns all volunteers for a specific project' do
       @project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
