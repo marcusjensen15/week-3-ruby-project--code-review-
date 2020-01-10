@@ -47,7 +47,7 @@ class Project
 
   end
 
-
+#I CHANGED THE UPDATE FUNCTION TO BE #{@id} instead of #{id}
   def update(attributes)
 
     @title = attributes.fetch(:title)

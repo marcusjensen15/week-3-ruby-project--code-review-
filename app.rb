@@ -101,4 +101,17 @@ delete('/home/projects/:id')do
 end
 
 
+
 #NEED TO WRITE A PATCH TO UPDATE A PROJECT NAME
+
+
+#This will allow the user to update a project
+
+patch ('/home/projects/:id') do
+  @project = Project.find(params[:id].to_i())
+  @project.update({:title => params[:title], :id => nil})
+  @volunteers = Volunteer.all
+  @projects = Project.all
+
+  erb(:home)
+end
