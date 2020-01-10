@@ -18,14 +18,12 @@ class Project
     returned_id
   end
 
-  #below method not yet fully passing
 
   def save
   result = DB.exec("INSERT INTO projects (title) VALUES ('#{title}') RETURNING id;")
   @id = result.first().fetch("id").to_i
   end
 
-#below method not yet passing - works but requires equals reconfig
 
   def self.all
     returned_projects = DB.exec("SELECT * FROM projects;")
@@ -45,6 +43,21 @@ class Project
     else
       false
     end
+  end
+
+#below test not passing
+
+  def self.find(id)
+    project = DB.exec("SELECT * FROM projects WHERE id = #{id};").first
+    if project
+
+      title = project.fetch("title")
+      id = project.fetch("id").to_i
+      Project.new({:title => title, :id => id})
+    else
+      nil
+    end
+
   end
 
 end
