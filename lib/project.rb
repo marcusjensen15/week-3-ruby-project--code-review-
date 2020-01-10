@@ -7,16 +7,16 @@ class Project
 
   end
 
-  def title
-    returned_title = @title
-    returned_title
-  end
+  # def title
+  #   returned_title = @title
+  #   returned_title
+  # end
 
 
-  def id
-    returned_id = @id
-    returned_id
-  end
+  # def id
+  #   returned_id = @id
+  #   returned_id
+  # end
 
 
   def save
@@ -45,7 +45,6 @@ class Project
     end
   end
 
-#below test not passing
 
   def self.find(id)
     project = DB.exec("SELECT * FROM projects WHERE id = #{id};").first
@@ -59,5 +58,16 @@ class Project
     end
 
   end
+
+#Below method not passing
+
+  def update(attributes)
+
+    @title = attributes.fetch(:title)
+    DB.exec("UPDATE projects SET title= '#{@title}' WHERE id = #{id};")
+
+  end
+
+#above, something wrong with title where it isnt fetching the string out of the returned hash
 
 end
