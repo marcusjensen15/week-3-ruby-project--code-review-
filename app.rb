@@ -82,3 +82,10 @@ get ('/home/project/:id')do
   erb(:project)
 
 end
+
+#This shows the edit page for a specific project
+
+get('/home/projects/:id/edit') do
+  @project = Project.find(params[:id].to_i())
+  erb(:edit_project)
+end
