@@ -70,9 +70,7 @@ end
 
 
 
-#This will show the detals and volunteers for a specific project
-
-#this shows the page on the operator view for a specific city id
+#This will show the details and volunteers for a specific project
 
 get ('/home/project/:id')do
 
@@ -89,3 +87,18 @@ get('/home/projects/:id/edit') do
   @project = Project.find(params[:id].to_i())
   erb(:edit_project)
 end
+
+#This will allow the user to delete a project
+
+delete('/home/projects/:id')do
+  @project = Project.find(params[:id].to_i())
+  @project.delete()
+
+  @projects = Project.all
+  @volunteers = Volunteer.all
+
+  erb(:home)
+end
+
+
+#NEED TO WRITE A PATCH TO UPDATE A PROJECT NAME
