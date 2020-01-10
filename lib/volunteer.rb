@@ -38,16 +38,16 @@ class Volunteer
   #   projects
   #
   # end
-  #
-  # def ==(project_compare)
-  #   if project_compare != nil
-  #     self.title() == project_compare.title()
-  #   else
-  #     false
-  #   end
-  # end
-  #
-  #
+
+  def ==(volunteer_compare)
+    if volunteer_compare != nil
+      self.name() == volunteer_compare.name()
+    else
+      false
+    end
+  end
+
+
   # def self.find(id)
   #   project = DB.exec("SELECT * FROM projects WHERE id = #{id};").first
   #   if project
