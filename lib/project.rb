@@ -3,7 +3,7 @@ class Project
 
   def initialize(attributes)
     @title = attributes.fetch(:title)
-    @id = attributes.fetch(:id).to_i
+    @id = attributes.fetch(:id)
 
   end
 
@@ -12,6 +12,11 @@ class Project
     returned_title
   end
 
+#below test not passing
+  def id
+    returned_id = @id
+    returned_id
+  end
 
 
 end
