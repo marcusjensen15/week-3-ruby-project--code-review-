@@ -60,7 +60,7 @@ class Project
 
   end
 
-  #below method isn't tested. gets all volunteers for a project
+  #below method isn't tested. gets all volunteers for a project.
 
   def volunteers()
 
