@@ -9,35 +9,29 @@ class Volunteer
 
   end
 
-  # def title
-  #   returned_title = @title
-  #   returned_title
-  # end
 
 
-  # def id
-  #   returned_id = @id
-  #   returned_id
-  # end
+#name might need to be a param instead of an instance var. if so remove @, this might not pass
 
+  def save
+  result = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;")
+  @id = result.first().fetch("id").to_i
+  end
 
-  # def save
-  # result = DB.exec("INSERT INTO projects (title) VALUES ('#{title}') RETURNING id;")
-  # @id = result.first().fetch("id").to_i
-  # end
-  #
-  #
-  # def self.all
-  #   returned_projects = DB.exec("SELECT * FROM projects;")
-  #   projects = []
-  #   returned_projects.each() do |project|
-  #     title = project.fetch("title")
-  #     id = project.fetch("id").to_i
-  #     projects.push(Project.new({:title => title, :id => id}))
-  #   end
-  #   projects
-  #
-  # end
+#below method might not pass
+
+  def self.all
+    returned_volunteers = DB.exec("SELECT * FROM volunteers;")
+    volunteers = []
+    returned_volunteers.each() do |volunteer|
+      name = volunteer.fetch("name")
+      id = volunteer.fetch("id").to_i
+      project_id = volunteer.fetch("project_id").to_i
+      volunteers.push(Volunteer.new({:name => name, :id => id, :project_id => project_id}))
+    end
+    volunteers
+
+  end
 
   def ==(volunteer_compare)
     if volunteer_compare != nil
