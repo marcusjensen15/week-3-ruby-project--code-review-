@@ -59,7 +59,6 @@ class Project
 
   end
 
-#Below method not passing
 
   def update(attributes)
 
@@ -68,6 +67,9 @@ class Project
 
   end
 
-#above, something wrong with title where it isnt fetching the string out of the returned hash
+  def delete()
+    DB.exec("DELETE FROM projects WHERE id = #{@id};")
 
+  end
+  
 end
