@@ -65,8 +65,6 @@ get '/volunteer/new' do
   erb(:new_volunteer)
 end
 
-#this allow the user to post a new volunteer to the homepage
-
 
 
 
@@ -114,4 +112,14 @@ patch ('/home/projects/:id') do
   @projects = Project.all
 
   erb(:home)
+end
+
+#This will display an individual volunteer's page
+
+get ('/home/volunteers/:name')do
+
+  @volunteer = Volunteer.find(params[:id].to_i())
+
+  erb(:volunteer)
+
 end
