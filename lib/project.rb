@@ -73,14 +73,14 @@ class Project
   #
   # end
 
-  #volunteers method re-write
+  #volunteers method re-write : replaced nil with volunteer.fetch("id")
 
   def volunteers()
 
-    returned_volunteers = DB.exec("SELECT name FROM volunteers WHERE project_id = '#{@id}';")
+    returned_volunteers = DB.exec("SELECT name, id FROM volunteers WHERE project_id = '#{@id}';")
     volunteers = []
     returned_volunteers.each do |volunteer|
-      volunteers.push(Volunteer.new({:name => volunteer.fetch("name"),:id => nil, :project_id => @id}))
+      volunteers.push(Volunteer.new({:name => volunteer.fetch("name"),:id => volunteer.fetch("id"), :project_id => @id}))
     end
     volunteers
 

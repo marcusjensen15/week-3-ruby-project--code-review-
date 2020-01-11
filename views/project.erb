@@ -7,7 +7,7 @@
 <% if @volunteers %>
 <ul>
 <% @volunteers.each do |volunteer| %>
-<li><a href="/home/volunteers/<%= volunteer.id %>"><strong><%= volunteer.name %>  <%= volunteer.id %></strong> </li>
+<li><a href="/home/volunteers/<%= volunteer.id %>"><strong><%= volunteer.name %> </strong> </li>
   <% end %>
 </ul>
 <% else %>

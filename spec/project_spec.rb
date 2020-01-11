@@ -75,7 +75,7 @@ describe Project do
   #   end
   # end
 
-#rewriting volunteers method to return an object
+#rewriting volunteers method to return an object, there is an error in my volunteers function. it is setting the id to nill when it really should be fetched out of the object
 
 describe '#volunteers' do
   it 'returns all volunteers for a specific project' do
@@ -85,7 +85,6 @@ describe '#volunteers' do
     volunteer1.save
     volunteer2 = Volunteer.new({:name => 'Joe', :project_id => project.id, :id => nil})
     volunteer2.save
-  
     expect(project.volunteers).to eq [volunteer1, volunteer2]
   end
 end
