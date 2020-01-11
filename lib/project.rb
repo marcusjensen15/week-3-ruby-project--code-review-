@@ -62,18 +62,31 @@ class Project
 
   #below method isn't tested. gets all volunteers for a project.
 
+  # def volunteers()
+  #
+  #   returned_volunteers = DB.exec("SELECT name FROM volunteers WHERE project_id = '#{@id}';")
+  #   volunteers = []
+  #   returned_volunteers.each do |volunteer|
+  #     volunteers.push(volunteer.fetch("name"))
+  #   end
+  #   volunteers
+  #
+  # end
+
+  #volunteers method re-write
+
   def volunteers()
 
     returned_volunteers = DB.exec("SELECT name FROM volunteers WHERE project_id = '#{@id}';")
     volunteers = []
     returned_volunteers.each do |volunteer|
-      volunteers.push(volunteer.fetch("name"))
+      volunteers.push(Volunteer.new({:name => volunteer.fetch("name"),:id => nil, :project_id => volunteer.fetch("project_id")}))
     end
     volunteers
 
   end
 
-
+ # Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
 
 
 end

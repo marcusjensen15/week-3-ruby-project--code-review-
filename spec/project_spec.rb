@@ -63,17 +63,34 @@ describe Project do
 
   #I revised the test below, I want my volunteers method to return names, not volunteer objects. Having it return names is DRYer code and makes more sense in this context.
 
-  describe '#volunteers' do
-    it 'returns all volunteers for a specific project' do
-      @project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
-      @project.save
-      volunteer1 = Volunteer.new({:name => 'Jasmine', :project_id => @project.id, :id => nil})
-      volunteer1.save
-      volunteer2 = Volunteer.new({:name => 'Joe', :project_id => @project.id, :id => nil})
-      volunteer2.save
-      expect(@project.volunteers).to eq ["Jasmine", "Joe"]
-    end
+  # describe '#volunteers' do
+  #   it 'returns all volunteers for a specific project' do
+  #     @project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+  #     @project.save
+  #     volunteer1 = Volunteer.new({:name => 'Jasmine', :project_id => @project.id, :id => nil})
+  #     volunteer1.save
+  #     volunteer2 = Volunteer.new({:name => 'Joe', :project_id => @project.id, :id => nil})
+  #     volunteer2.save
+  #     expect(@project.volunteers).to eq ["Jasmine", "Joe"]
+  #   end
+  # end
+
+#rewriting volunteers method to return an object
+
+describe '#volunteers' do
+  it 'returns all volunteers for a specific project' do
+    project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+    project.save
+    volunteer1 = Volunteer.new({:name => 'Jasmine', :project_id => project.id, :id => nil})
+    volunteer1.save
+    volunteer2 = Volunteer.new({:name => 'Joe', :project_id => project.id, :id => nil})
+    volunteer2.save
+    expect(project.volunteers).to eq [volunteer1, volunteer2]
   end
+end
+
+
+
 
   describe '#update' do
     it 'allows a user to update a project' do
