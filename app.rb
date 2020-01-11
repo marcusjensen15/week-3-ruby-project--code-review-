@@ -114,9 +114,9 @@ patch ('/home/projects/:id') do
   erb(:home)
 end
 
-#This will display an individual volunteer's page
+#This will display an individual volunteer's page (not working)
 
-get ('/home/volunteers/:name')do
+get ('/home/volunteers/:id')do
 
   @volunteer = Volunteer.find(params[:id].to_i())
 
