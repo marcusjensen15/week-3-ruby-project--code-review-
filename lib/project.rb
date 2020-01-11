@@ -80,7 +80,7 @@ class Project
     returned_volunteers = DB.exec("SELECT name FROM volunteers WHERE project_id = '#{@id}';")
     volunteers = []
     returned_volunteers.each do |volunteer|
-      volunteers.push(Volunteer.new({:name => volunteer.fetch("name"),:id => nil, :project_id => volunteer.fetch("project_id")}))
+      volunteers.push(Volunteer.new({:name => volunteer.fetch("name"),:id => nil, :project_id => @id}))
     end
     volunteers
 
