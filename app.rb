@@ -114,12 +114,45 @@ patch ('/home/projects/:id') do
   erb(:home)
 end
 
-#This will display an individual volunteer's page (not working)
+#This will display an individual volunteer's page
 
 get ('/home/volunteers/:id')do
 
   @volunteer = Volunteer.find(params[:id].to_i())
 
   erb(:volunteer)
+
+end
+
+#This will allow the user to delete a volunteer (not working)
+
+delete('/home/volunteers/:id')do
+  @volunteer = Volunteer.find(params[:id].to_i())
+  @volunteer.delete()
+
+  @projects = Project.all
+  @volunteers = Volunteer.all
+
+  erb(:home)
+end
+
+#This will allow the user to update a volunteers name (not working)
+
+patch ('/home/volunteers/:id') do
+  @volunteer = Volunteer.find(params[:id].to_i())
+  @volunteer.update({:name => params[:name], :id => nil})
+  @volunteers = Volunteer.all
+  @projects = Project.all
+
+  erb(:home)
+end
+
+#This will display the edit volunteer page (not working)
+
+get ('/home/volunteers/:id/edit')do
+
+  @volunteer = Volunteer.find(params[:id].to_i())
+
+  erb(:edit_volunteer)
 
 end

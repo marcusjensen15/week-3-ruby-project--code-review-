@@ -60,8 +60,9 @@ describe 'the volunteer detail page path', {:type => :feature} do
     test_volunteer.save
     visit "/home/project/#{project_id}"
     click_link('Jasmine')
-    # fill_in('name', :with => 'Jane')
-    # click_button('Update Volunteer')
-    expect(page).to have_content('Jasmine')
+    click_link('Edit/Delete Volunteer')
+    fill_in('name', :with => 'Jane')
+    click_button('Rename Volunteer')
+    expect(page).to have_content('Jane')
   end
 end

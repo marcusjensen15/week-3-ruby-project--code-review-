@@ -55,4 +55,25 @@ describe Volunteer do
     end
   end
 
+#The test below is additional
+  context '#delete' do
+    it 'allows a user to delete a project' do
+      volunteer = Volunteer.new({:name => 'Matt' , :project_id => 1, :id => nil})
+      volunteer.save
+      volunteer.delete
+      expect(Volunteer.all).to eq []
+    end
+  end
+
+  #below test may be failing. The test below is additional
+
+  describe '#update' do
+    it 'allows a user to update a volunteers name' do
+      volunteer = Volunteer.new({:name => 'Matt' , :project_id => 1, :id => nil})
+      volunteer.save
+      volunteer.update({:name => 'Dave' , :project_id => 1, :id => nil})
+      expect(volunteer.name).to eq 'Dave'
+    end
+  end
+
 end

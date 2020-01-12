@@ -50,6 +50,21 @@ class Volunteer
 
   end
 
+#need to write update and delete methods for volunteer and test both
+
+def delete()
+  DB.exec("DELETE FROM volunteers WHERE id = #{@id};")
+
+end
+
+#untested update volunteer method
+
+def update(attributes)
+
+  @name = attributes.fetch(:name)
+  DB.exec("UPDATE volunteers SET name= '#{@name}' WHERE id = #{id};")
+
+end
 
 
 
